@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyectos</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-5">Lista de Proyectos</h2>
+        <a href="/proyectos/nuevo" class="btn btn-success mb-3">Nuevo Proyecto</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Fecha de Inicio</th>
+                    <th>Fecha de Fin</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for proyecto in proyectos %}
+                <tr>
+                    <td>{{ proyecto[0] }}</td>
+                    <td>{{ proyecto[1] }}</td>
+                    <td>{{ proyecto[2] }}</td>
+                    <td>{{ proyecto[3] }}</td>
+                    <td>{{ proyecto[4] }}</td>
+                    <td>{{ proyecto[5] }}</td>
+                    <td>
+                        <a href="/proyectos/editar/{{ proyecto[0] }}" class="btn btn-warning">Editar</a>
+                        <form method="POST" action="/proyectos/eliminar/{{ proyecto[0] }}" style="display:inline;">
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/logout" class="btn btn-danger">Cerrar Sesión</a>
+    </div>
+</body>
+</html>
